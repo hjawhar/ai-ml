@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[codz]
+build/
+dist/
+wheels/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store

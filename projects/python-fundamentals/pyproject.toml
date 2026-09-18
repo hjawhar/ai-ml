@@ -1,0 +1,8 @@
+[project]
+name = "python-fundamentals"
+version = "0.1.0"
+description = "Python language coursework from programming-26.mooc.fi — standard library only"
+readme = "README.md"
+authors = [{ name = "Hassan Jawhar" }]
+requires-python = ">=3.12"
+dependencies = []

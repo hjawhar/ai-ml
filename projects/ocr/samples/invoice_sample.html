@@ -1,0 +1,180 @@
+<!doctype html>
+<!--
+  Source of truth for samples/invoice_sample.png (1240x1304, rendered headless):
+    chromium --headless --screenshot=samples/invoice_sample.png \
+             --window-size=1240,1304 samples/invoice_sample.html
+  Fictional company, fictional numbers.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Invoice INV-2026-0417</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 56px 64px;
+        width: 1240px;
+        font-family: Helvetica, Arial, sans-serif;
+        color: #14171f;
+        background: #ffffff;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+      header { display: flex; justify-content: space-between; align-items: flex-start; }
+      .brand { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; }
+      .brand-sub { color: #5a6273; font-size: 13px; margin-top: 4px; }
+      .doc-title { font-size: 34px; font-weight: 700; text-align: right; letter-spacing: 2px; }
+      .meta { margin-top: 12px; text-align: right; }
+      .meta div { margin-bottom: 3px; }
+      .meta .label { color: #5a6273; display: inline-block; min-width: 110px; }
+      .parties { display: flex; gap: 96px; margin-top: 44px; }
+      .parties h2 {
+        font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase;
+        color: #5a6273; margin: 0 0 8px 0; font-weight: 700;
+      }
+      .parties .name { font-weight: 700; }
+      table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+      thead th {
+        text-align: left; font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase;
+        color: #ffffff; background: #2f3a4f; padding: 10px 12px; font-weight: 700;
+      }
+      tbody td { padding: 11px 12px; border-bottom: 1px solid #dfe3ea; vertical-align: top; }
+      .num { text-align: right; white-space: nowrap; }
+      .desc-sub { color: #5a6273; font-size: 13px; }
+      .totals { margin-top: 26px; display: flex; justify-content: flex-end; }
+      .totals table { width: 340px; margin: 0; }
+      .totals td { padding: 7px 12px; border: none; }
+      .totals .label { color: #5a6273; }
+      .totals .grand td {
+        border-top: 2px solid #2f3a4f; font-weight: 700; font-size: 18px; padding-top: 12px;
+      }
+      footer { margin-top: 52px; border-top: 1px solid #dfe3ea; padding-top: 20px; }
+      footer h3 { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: #5a6273; margin: 0 0 6px 0; }
+      .pay { display: flex; gap: 96px; }
+      .note { margin-top: 26px; color: #5a6273; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <div class="brand">NORTHWIND ANALYTICS LTD</div>
+        <div class="brand-sub">
+          144 Harbour Street, Suite 12<br />
+          Bristol BS1 4QD, United Kingdom<br />
+          VAT GB 342 8871 09
+        </div>
+      </div>
+      <div>
+        <div class="doc-title">INVOICE</div>
+        <div class="meta">
+          <div><span class="label">Invoice No</span> INV-2026-0417</div>
+          <div><span class="label">Invoice Date</span> 12 August 2026</div>
+          <div><span class="label">Due Date</span> 11 September 2026</div>
+          <div><span class="label">PO Number</span> PO-88213</div>
+          <div><span class="label">Terms</span> Net 30</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="parties">
+      <div>
+        <h2>Bill To</h2>
+        <div class="name">Vega Logistics Inc.</div>
+        <div>
+          Attn: Accounts Payable<br />
+          2200 Market Street, Floor 9<br />
+          Philadelphia, PA 19103<br />
+          United States
+        </div>
+      </div>
+      <div>
+        <h2>Ship To</h2>
+        <div class="name">Vega Logistics Inc. - Depot 4</div>
+        <div>
+          17 Kestrel Way<br />
+          Newark, NJ 07105<br />
+          United States
+        </div>
+      </div>
+    </section>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 46%">Description</th>
+          <th class="num" style="width: 12%">Qty</th>
+          <th class="num" style="width: 14%">Unit Price</th>
+          <th class="num" style="width: 12%">Tax</th>
+          <th class="num" style="width: 16%">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Freight data pipeline build<br />
+            <span class="desc-sub">Milestone 2 of 3 - ingestion layer</span>
+          </td>
+          <td class="num">1</td>
+          <td class="num">12,400.00</td>
+          <td class="num">20%</td>
+          <td class="num">12,400.00</td>
+        </tr>
+        <tr>
+          <td>Senior engineer consulting<br /><span class="desc-sub">July 2026, on-site Bristol</span></td>
+          <td class="num">36</td>
+          <td class="num">145.00</td>
+          <td class="num">20%</td>
+          <td class="num">5,220.00</td>
+        </tr>
+        <tr>
+          <td>Dashboard licence - Tier 2<br /><span class="desc-sub">Annual, 25 seats</span></td>
+          <td class="num">25</td>
+          <td class="num">96.00</td>
+          <td class="num">20%</td>
+          <td class="num">2,400.00</td>
+        </tr>
+        <tr>
+          <td>Onboarding workshop<br /><span class="desc-sub">2 days, remote delivery</span></td>
+          <td class="num">2</td>
+          <td class="num">890.00</td>
+          <td class="num">0%</td>
+          <td class="num">1,780.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <table>
+        <tr><td class="label">Subtotal</td><td class="num">GBP 21,800.00</td></tr>
+        <tr><td class="label">Discount (5%)</td><td class="num">-1,090.00</td></tr>
+        <tr><td class="label">VAT 20%</td><td class="num">4,006.00</td></tr>
+        <tr><td class="label">Shipping</td><td class="num">0.00</td></tr>
+        <tr class="grand"><td>Amount Due</td><td class="num">GBP 24,716.00</td></tr>
+      </table>
+    </div>
+
+    <footer>
+      <div class="pay">
+        <div>
+          <h3>Payment Details</h3>
+          <div>Bank: Lloyds Commercial</div>
+          <div>Account Name: Northwind Analytics Ltd</div>
+          <div>Sort Code: 30-96-17</div>
+          <div>Account No: 41882203</div>
+          <div>IBAN: GB29 LOYD 3096 1741 8822 03</div>
+        </div>
+        <div>
+          <h3>Remit To</h3>
+          <div>accounts@northwind-analytics.co.uk</div>
+          <div>+44 117 496 0281</div>
+          <div>Reference: INV-2026-0417</div>
+        </div>
+      </div>
+      <div class="note">
+        Payment is due within 30 days of the invoice date. Late payments are subject to interest at 4% above
+        the Bank of England base rate, in line with the Late Payment of Commercial Debts (Interest) Act 1998.
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+[project]
+name = "tf"
+version = "0.1.0"
+description = "TensorFlow labs and DeepLearning.AI TF Developer Certificate coursework"
+readme = "README.md"
+authors = [{ name = "Hassan Jawhar" }]
+# TF 2.16.1 publishes cp39..cp312 wheels only; 3.13+ cannot resolve.
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "tensorflow==2.16.1",
+    "keras==3.3.3",
+    "tensorflow-datasets==4.9.4",
+    "pandas==2.1.1",
+    "matplotlib==3.8.3",
+    "ipywidgets==8.1.1",
+    "pooch==1.8.1",
+    "dlai-grader>=1.18.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.3.0",
+]

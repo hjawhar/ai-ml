@@ -1,0 +1,169 @@
+<!doctype html>
+<!--
+  Source of truth for samples/receipt_sample.png (720x1500 CSS px, rendered at 2x):
+    chromium --headless --screenshot=samples/receipt_sample.png \
+             --window-size=720,1500 --force-device-scale-factor=2 \
+             samples/receipt_sample.html
+
+  A supermarket till receipt on thermal paper: narrow strip, monospace ink,
+  torn edges, faint paper grain, print fading toward the tail, lying at a slight
+  angle on a worktop. The rotation is deliberate - it exercises the
+  polygon-to-bbox path in models.BBox.from_polygon, which takes extremes over
+  every vertex rather than trusting the first corner.
+
+  Fictional store. The figures balance: line items sum to the subtotal, the
+  quantity column sums to ITEMS, and the VAT summary grosses sum to TOTAL.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Freshmart receipt 008321</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        width: 720px;
+        height: 1500px;
+        background: #c9c7c0;
+        background-image: radial-gradient(circle at 30% 20%, #d6d4cd 0%, #bfbdb6 70%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Courier New", Courier, monospace;
+      }
+      .strip {
+        transform: rotate(-1.4deg);
+        filter: drop-shadow(0 9px 14px rgba(0, 0, 0, 0.34));
+      }
+      .paper {
+        position: relative;
+        width: 520px;
+        padding: 40px 30px 42px 30px;
+        font-size: 16px;
+        line-height: 1.52;
+        color: #2b2a27;
+        background-color: #f7f5ee;
+        /* paper grain + thermal print fading toward the tail */
+        background-image:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(214, 209, 194, 0.34) 100%),
+          repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.022) 0 1px, transparent 1px 3px),
+          repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.016) 0 1px, transparent 1px 4px);
+        /* torn top and bottom edges: 40 teeth, 9px deep */
+        clip-path: polygon(
+          0% 0px, 2.5% 9px, 5% 0px, 7.5% 9px, 10% 0px, 12.5% 9px, 15% 0px, 17.5% 9px,
+          20% 0px, 22.5% 9px, 25% 0px, 27.5% 9px, 30% 0px, 32.5% 9px, 35% 0px, 37.5% 9px,
+          40% 0px, 42.5% 9px, 45% 0px, 47.5% 9px, 50% 0px, 52.5% 9px, 55% 0px, 57.5% 9px,
+          60% 0px, 62.5% 9px, 65% 0px, 67.5% 9px, 70% 0px, 72.5% 9px, 75% 0px, 77.5% 9px,
+          80% 0px, 82.5% 9px, 85% 0px, 87.5% 9px, 90% 0px, 92.5% 9px, 95% 0px, 97.5% 9px,
+          100% 0px,
+          100% 100%, 97.5% calc(100% - 9px), 95% 100%, 92.5% calc(100% - 9px),
+          90% 100%, 87.5% calc(100% - 9px), 85% 100%, 82.5% calc(100% - 9px),
+          80% 100%, 77.5% calc(100% - 9px), 75% 100%, 72.5% calc(100% - 9px),
+          70% 100%, 67.5% calc(100% - 9px), 65% 100%, 62.5% calc(100% - 9px),
+          60% 100%, 57.5% calc(100% - 9px), 55% 100%, 52.5% calc(100% - 9px),
+          50% 100%, 47.5% calc(100% - 9px), 45% 100%, 42.5% calc(100% - 9px),
+          40% 100%, 37.5% calc(100% - 9px), 35% 100%, 32.5% calc(100% - 9px),
+          30% 100%, 27.5% calc(100% - 9px), 25% 100%, 22.5% calc(100% - 9px),
+          20% 100%, 17.5% calc(100% - 9px), 15% 100%, 12.5% calc(100% - 9px),
+          10% 100%, 7.5% calc(100% - 9px), 5% 100%, 2.5% calc(100% - 9px), 0% 100%
+        );
+      }
+      .center { text-align: center; }
+      .store { font-size: 26px; font-weight: 700; letter-spacing: 3px; }
+      .tagline { letter-spacing: 1px; }
+      hr {
+        border: none;
+        border-top: 1px dashed #6a675f;
+        margin: 12px 0;
+      }
+      .row { display: flex; justify-content: space-between; gap: 14px; }
+      .row .qty { width: 34px; }
+      .row .name { flex: 1; }
+      .row .code { width: 22px; text-align: center; }
+      .row .amt { width: 72px; text-align: right; }
+      .sub { padding-left: 34px; color: #4a4843; }
+      .big { font-size: 21px; font-weight: 700; }
+      .vat { width: 100%; border-collapse: collapse; }
+      .vat th, .vat td { font-weight: normal; text-align: right; padding: 0; }
+      .vat th:first-child, .vat td:first-child { text-align: left; }
+      .barcode {
+        height: 62px;
+        margin: 16px auto 6px auto;
+        width: 320px;
+        opacity: 0.86;
+        background: repeating-linear-gradient(
+          90deg,
+          #14130f 0 3px, #f7f5ee 3px 5px, #14130f 5px 6px, #f7f5ee 6px 10px,
+          #14130f 10px 14px, #f7f5ee 14px 15px, #14130f 15px 17px, #f7f5ee 17px 21px
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="strip">
+      <div class="paper">
+        <div class="center store">FRESHMART</div>
+        <div class="center tagline">SUPERMARKET</div>
+        <div class="center">142 Kingsland High Street</div>
+        <div class="center">London E8 2PB</div>
+        <div class="center">Tel: 020 7254 8811</div>
+        <div class="center">VAT Reg No: GB 483 2917 55</div>
+
+        <hr />
+        <div class="row"><span>STORE 0142</span><span>TILL 04</span><span>OP 17</span></div>
+        <div class="row"><span>14/09/2026</span><span>18:42</span></div>
+        <div class="row"><span>TRANS 008321</span><span>RECEIPT 1183</span></div>
+
+        <hr />
+        <div class="row"><span class="qty">2</span><span class="name">SEMI SKIMMED MILK 2L</span><span class="code">Z</span><span class="amt">2.40</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">BANANAS LOOSE</span><span class="code">Z</span><span class="amt">0.93</span></div>
+        <div class="sub">0.842 kg @ 1.10/kg</div>
+        <div class="row"><span class="qty">1</span><span class="name">SOURDOUGH LOAF 800G</span><span class="code">Z</span><span class="amt">2.75</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">FREE RANGE EGGS 12PK</span><span class="code">Z</span><span class="amt">3.45</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">MATURE CHEDDAR 350G</span><span class="code">Z</span><span class="amt">4.20</span></div>
+        <div class="row"><span class="qty">3</span><span class="name">GREEK YOGHURT 500G</span><span class="code">Z</span><span class="amt">5.10</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">CHICKEN BREAST 650G</span><span class="code">Z</span><span class="amt">6.29</span></div>
+        <div class="row"><span class="qty">2</span><span class="name">TOMATOES VINE 400G</span><span class="code">Z</span><span class="amt">3.00</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">OLIVE OIL 750ML</span><span class="code">Z</span><span class="amt">7.49</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">KITCHEN TOWEL 4PK</span><span class="code">A</span><span class="amt">3.50</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">DISH SOAP 500ML</span><span class="code">A</span><span class="amt">1.99</span></div>
+        <div class="row"><span class="qty">1</span><span class="name">CARRIER BAG</span><span class="code">A</span><span class="amt">0.25</span></div>
+
+        <hr />
+        <div class="row"><span>ITEMS</span><span>16</span></div>
+        <div class="row"><span>SUBTOTAL</span><span>41.35</span></div>
+        <div class="row"><span>CLUBCARD SAVINGS</span><span>-2.10</span></div>
+        <div class="row big"><span>TOTAL GBP</span><span>39.25</span></div>
+
+        <hr />
+        <div class="row"><span>VISA CONTACTLESS</span><span>39.25</span></div>
+        <div class="row"><span>CARD **** **** **** 4471</span></div>
+        <div class="row"><span>AUTH CODE 072913</span><span>ICC</span></div>
+        <div class="row"><span>MERCHANT ID 88104223</span></div>
+        <div class="row"><span>CHANGE DUE</span><span>0.00</span></div>
+
+        <hr />
+        <div>VAT SUMMARY</div>
+        <table class="vat">
+          <tr><th>CODE</th><th>RATE</th><th>NET</th><th>VAT</th><th>GROSS</th></tr>
+          <tr><td>A</td><td>20.00%</td><td>4.78</td><td>0.96</td><td>5.74</td></tr>
+          <tr><td>Z</td><td>0.00%</td><td>33.51</td><td>0.00</td><td>33.51</td></tr>
+        </table>
+
+        <hr />
+        <div class="row"><span>CLUBCARD</span><span>6354 **** **** 2210</span></div>
+        <div class="row"><span>POINTS THIS VISIT</span><span>39</span></div>
+        <div class="row"><span>POINTS BALANCE</span><span>1,284</span></div>
+
+        <hr />
+        <div class="center">THANK YOU FOR SHOPPING WITH US</div>
+        <div class="center">RETURNS ACCEPTED WITHIN 30 DAYS</div>
+        <div class="center">WITH THIS RECEIPT</div>
+        <div class="center">www.freshmart.co.uk</div>
+        <div class="barcode"></div>
+        <div class="center">8 401 3297 4508 21</div>
+        <div class="center">*** CUSTOMER COPY ***</div>
+      </div>
+    </div>
+  </body>
+</html>
