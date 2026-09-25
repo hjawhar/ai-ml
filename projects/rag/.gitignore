@@ -1,2 +1,2 @@
 .env
-db
+db/chroma_db
