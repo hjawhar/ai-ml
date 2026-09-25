@@ -7,12 +7,13 @@ Each project under `projects/` is a self-contained [uv](https://docs.astral.sh/u
 
 | Project | What it does | Stack | AI |
 |---|---|---|---|
-| [`projects/ocr`](projects/ocr) | Extracts every text line from invoice and till-receipt images, with row clustering and reading-order reconstruction. Typed package, argparse CLI, JSON/text output, tested. | PaddleOCR 3.7, ONNX Runtime, pytest | AI-assisted |
+| [`projects/rag`](projects/rag) | Retrieval-Augmented Generation | LangChain | No AI |
 | [`projects/tf`](projects/tf) | TensorFlow labs and the DeepLearning.AI *TensorFlow Developer Professional Certificate* coursework. | TensorFlow 2.16, Keras 3.3, Jupyter | No AI |
 | [`projects/web`](projects/web) | Minimal Flask service — the base for HTTP-serving experiments. | Flask 3.1 | No AI |
 | [`projects/python-fundamentals`](projects/python-fundamentals) | Python language coursework from mooc.fi: file I/O, CSV and JSON handling, error handling. Standard library only. | Python 3.12 stdlib | No AI |
+| [`projects/ocr`](projects/ocr) | Extracts every text line from invoice and till-receipt images, with row clustering and reading-order reconstruction. Typed package, argparse CLI, JSON/text output, tested. | PaddleOCR 3.7, ONNX Runtime, pytest | AI-assisted |
 
-The **AI** column is deliberate. The learning projects — `tf`, `web`, `python-fundamentals` —
+The **AI** column is deliberate. The learning projects — `rag`, `tf`, `web`, `python-fundamentals` —
 were written without any AI assistance: the purpose was to write clean code by applying my own
 knowledge and best practices, and letting a model write it would ruin the point of learning.
 `ocr` is the opposite case, built as an AI-assisted engineering project; it ships an
@@ -26,7 +27,7 @@ cd projects/<name>
 uv sync
 ```
 
-`<name>` is one of `ocr`, `tf`, `web`, `python-fundamentals`. `uv sync` reads that
+`<name>` is one of `ocr`, `rag`, `tf`, `web`, `python-fundamentals`. `uv sync` reads that
 project's `.python-version` and its `uv.lock`, and builds the project's own `.venv`
 beside them.
 
