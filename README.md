@@ -1,7 +1,7 @@
 # ai-ml
 
 Applied AI and Machine Learning: coursework, training labs, code samples and projects,
-built while pursuing a Master's degree in Applied Artificial Intelligence.
+built while pursuing Master's degree in Applied Artificial Intelligence.
 
 Each project under `projects/` is a self-contained [uv](https://docs.astral.sh/uv/) project.
 
@@ -80,7 +80,7 @@ echo $PWD/.venv/bin/python
 ### <u>References</u>:
 - uv, package manager for Python: https://docs.astral.sh/uv/
 - Python Course: https://programming-26.mooc.fi/
-- Deeplearning courses: https://github.com/https-deeplearning-ai/tensorflow-1-public/tree/main
+- Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition: https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/
 
 ## License
 
