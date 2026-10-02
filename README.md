@@ -5,20 +5,20 @@ built while pursuing a Master's degree in Applied Artificial Intelligence.
 
 Each project under `projects/` is a self-contained [uv](https://docs.astral.sh/uv/) project.
 
-| Project | What it does | Stack | AI |
-|---|---|---|---|
-| [`projects/rag`](projects/rag) | Retrieval-Augmented Generation | LangChain | No AI |
-| [`projects/tf`](projects/tf) | TensorFlow labs and the DeepLearning.AI *TensorFlow Developer Professional Certificate* coursework. | TensorFlow 2.16, Keras 3.3, Jupyter | No AI |
-| [`projects/web`](projects/web) | Minimal Flask service — the base for HTTP-serving experiments. | Flask 3.1 | No AI |
-| [`projects/python-fundamentals`](projects/python-fundamentals) | Python language coursework from mooc.fi: file I/O, CSV and JSON handling, error handling. Standard library only. | Python 3.12 stdlib | No AI |
-| [`projects/ocr`](projects/ocr) | Extracts every text line from invoice and till-receipt images, with row clustering and reading-order reconstruction. Typed package, argparse CLI, JSON/text output, tested. | PaddleOCR 3.7, ONNX Runtime, pytest | AI-assisted |
+| Project | What it does | Stack | AI | Progress |
+|---|---|---|---|---|
+| [`projects/rag`](projects/rag) | Retrieval-Augmented Generation | LangChain | No AI | Done |
+| [`projects/tf`](projects/tf) | TensorFlow labs and the DeepLearning.AI *TensorFlow Developer Professional Certificate* coursework. | TensorFlow 2.16, Keras 3.3, Jupyter | No AI | Done |
+| [`projects/web`](projects/web) | Minimal Flask service — the base for HTTP-serving experiments. | Flask 3.1 | No AI | Done |
+| [`projects/python-fundamentals`](projects/python-fundamentals) | Python language coursework from mooc.fi: file I/O, CSV and JSON handling, error handling. Standard library only. | Python 3.12 stdlib | No AI | Done |
+| [`projects/ocr`](projects/ocr) | Extracts every text line from invoice and till-receipt images, with row clustering and reading-order reconstruction. Typed package, argparse CLI, JSON/text output, tested. | PaddleOCR 3.7, ONNX Runtime, pytest | AI-assisted | Done |
+| [`projects/autopilot`](projects/autopilot) | Real-time vehicle detection and tracking on video (cars, motorcycles, buses, trucks) with YOLO, rendered frame by frame through OpenCV. | Ultralytics YOLO, ONNX Runtime (GPU), OpenCV, PyTorch (CUDA 13.0) | No AI | In progress |
 
-The **AI** column is deliberate. The learning projects — `rag`, `tf`, `web`, `python-fundamentals` —
-were written without any AI assistance: the purpose was to write clean code by applying my own
-knowledge and best practices, and letting a model write it would ruin the point of learning.
-`ocr` is the opposite case, built as an AI-assisted engineering project; it ships an
-[`AGENTS.md`](projects/ocr/AGENTS.md) describing the constraints agents work under in that
-codebase.
+The **AI** column is deliberate. Learning projects are written without any AI assistance: the
+purpose is to write clean code by applying my own knowledge and best practices, and letting a
+model write it would ruin the point of learning. Projects marked *AI-assisted* are the opposite
+case, built as AI-assisted engineering projects; each ships an `AGENTS.md` describing the
+constraints agents work under in that codebase.
 
 ## Getting started
 
@@ -27,7 +27,7 @@ cd projects/<name>
 uv sync
 ```
 
-`<name>` is one of `ocr`, `rag`, `tf`, `web`, `python-fundamentals`. `uv sync` reads that
+`<name>` is one of the project names. `uv sync` reads that
 project's `.python-version` and its `uv.lock`, and builds the project's own `.venv`
 beside them.
 
